@@ -1,0 +1,267 @@
+[
+    {
+        "id": 1,
+        "user": {
+            "name": "luis mendoza",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "11/07/2022",
+        "city": "tuluá",
+        "place": "Parque de la guadua",
+        "description": "Un sitio muy agradable para relajarse",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 12,
+        "likes": 34
+    },
+    {
+        "id": 2,
+        "user": {
+            "name": "Daniel Grajales",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "10/07/2022",
+        "city": "cali",
+        "place": "Rincon caleño",
+        "description": "Excelente ambiente para estar en familia y pasar un fin de semana excelente",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 23,
+        "likes": 56
+    },
+    {
+        "id": 3,
+        "user": {
+            "name": "Luis Soto",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "13/07/2022",
+        "city": "pereira",
+        "place": "Estadio de pereira",
+        "description": "Es un sitio agradable en el que a sus alrededores se puede encontrar variedad de lugares de esparcimiento, como por ejemplo el parque de patinaje",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 29,
+        "likes": 97
+    },
+    {
+        "id": 4,
+        "user": {
+            "name": "Bryan Marulanda",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "tuluá",
+        "place": "Gidelpa",
+        "description": "Un sitio agradable para estar en familia y con amigos. Cuenta con una zona verde muy amplia, dos pistas y una cancha para recreación de varios tipos",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 69,
+        "likes": 157
+    },
+    {
+        "id": 5,
+        "user": {
+            "name": "Naruto Uzumaki",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "konoha",
+        "place": "Valle de la muerte",
+        "description": "Aquí comenzo la historia shinobi de la alde de la hoja. Dattebayo",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 777,
+        "likes": 777
+    },
+    {
+        "id": 6,
+        "user": {
+            "name": "Diego Buitrago",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "fenicia",
+        "place": "Mirador del valle",
+        "description": "Desde este sitio se puede observar el valle del cauca de una manera esplendida",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 24,
+        "likes": 65
+    },
+    {
+        "id": 7,
+        "user": {
+            "name": "John week",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "nueva York",
+        "place": "Hotel cotinental",
+        "description": "Excelente sitio para hacer paracaidismo. Pdta: volveré, babye...",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 8,
+        "user": {
+            "name": "Bob Esponja",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "fondo de bikiny",
+        "place": "Crustaceo cascarudo",
+        "description": "las mejores hamburguesas de fondo de bikiny",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 9,
+        "user": {
+            "name": "Shrek",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "pixar",
+        "place": "Castillo de fiona",
+        "description": "encontrarás el amor de tu vida",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 10,
+        "user": {
+            "name": "john doe",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "nueva York",
+        "place": "Estatua de la libertad",
+        "description": "lorem ipsum dolor sit amet conecticut",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 567,
+        "likes": 4263
+    },
+    {
+        "id": 11,
+        "user": {
+            "name": "Homero Simpson",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "springfield",
+        "place": "Taberna de moe",
+        "description": "Para ir y olvidarte de tus problemas",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 12,
+        "user": {
+            "name": "Kuroko",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "japón",
+        "place": "Coliseo de basketball",
+        "description": "...",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 13,
+        "user": {
+            "name": "John week",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "nueva York",
+        "place": "Hotel cotinental",
+        "description": "Excelente sitio para hacer paracaidismo. Pdta: volveré, babye...",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 14,
+        "user": {
+            "name": "John week",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "nueva York",
+        "place": "Hotel cotinental",
+        "description": "Excelente sitio para hacer paracaidismo. Pdta: volveré, babye...",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    },
+    {
+        "id": 15,
+        "user": {
+            "name": "John week",
+            "url": "https://via.placeholder.com/150/771796"
+        },
+        "date": "14/07/2022",
+        "city": "nueva York",
+        "place": "Hotel cotinental",
+        "description": "Excelente sitio para hacer paracaidismo. Pdta: volveré, babye...",
+        "media": [
+            "https://source.unsplash.com/umchkHwkdyM",
+            "https://source.unsplash.com/umchkHwkdyM"
+        ],
+        "comments": 657,
+        "likes": 423
+    }
+]
