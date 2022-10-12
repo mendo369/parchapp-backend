@@ -4,18 +4,36 @@ const { Schema, model } = require("mongoose");
 const parcheSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: "User",
   },
-  date: Date,
-  location: String,
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  city: {
+    // type: Schema.Types.ObjectId,
+    // ref:"City",
+    type: String,
+    required: true,
+  },
+  location: {
+    type: String,
+    required: true,
+  },
   description: String,
-  likes: Number
+  media: [String],
+  likes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 //vamos a modificar el objeto toJson que nos devuelve mongo
 parcheSchema.set("toJSON", {
   transform: (document, returnedObject) => {
-    (returnedObject.id = _id),
+    (returnedObject.id = returnedObject._id),
       delete returnedObject._id,
       delete returnedObject.__v;
   },

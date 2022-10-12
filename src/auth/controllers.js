@@ -1,0 +1,62 @@
+const User = require("../models/user");
+const { AuthServices } = require("./services");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+module.exports.AuthControllers = {
+  login: async (req, res) => {
+    try {
+      const { body } = req;
+      const { userName, password } = body;
+      console.log(userName, password);
+      const user = await User.findOne({ userName });
+      const passwordCorrect =
+        user === null ? false : bcrypt.compare(password, user.passwordHash);
+      // : await bcrypt.compare(password, user.passwordHash);
+
+      if (!(user && passwordCorrect)) {
+        res.status(401).json({
+          error: "User or password invalid",
+        });
+      }
+
+      const userForToken = {
+        id: user._id,
+        userName: user.userName,
+      };
+
+      const token = jwt.sign(userForToken, process.env.JWT, {
+        expiresIn: 60 * 60 * 24 * 30,
+      });
+
+      await res.send({
+        name: user.name,
+        userName: user.userName,
+        avatar: user.avatar,
+        token,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  create: async (req, res) => {
+    try {
+      const { body } = req;
+      const { userName, name, email, avatar, password } = body;
+      const passwordHash = await AuthServices.encrypt(password);
+      const user = new User({
+        userName,
+        name,
+        email,
+        avatar,
+        passwordHash,
+      });
+
+      const savedUser = await user.save();
+
+      res.json(savedUser);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+};

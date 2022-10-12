@@ -7,20 +7,21 @@ const userSchema = new Schema({
   email: String,
   passwordHash: String,
   avatar: String,
-  parches: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Parche'
-  }]
-});
+  parches: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Parche",
+    },
+  ],
+})
 
 //vamos a modificar el objeto toJson que nos devuelve mongo
 userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
-    (returnedObject.id = _id),
+    (returnedObject.id = returnedObject._id),
       delete returnedObject._id,
       delete returnedObject.__v;
-      delete returnedObject.email;
-      delete returnedObject.passwordHash;
+    delete returnedObject.passwordHash;
   },
 });
 

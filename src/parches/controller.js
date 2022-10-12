@@ -1,7 +1,5 @@
-//const parches = require("../mock/parches.json");
-//const cities = require("../mock/cities.json");
-
 const { ParchesServices } = require("./service");
+const jwt = require("jsonwebtoken");
 
 module.exports.ParchesControllers = {
   getParches: async (req, res) => {
@@ -15,34 +13,16 @@ module.exports.ParchesControllers = {
       if (!limit) limit = 7;
 
       if (city) {
-        let parches = ParchesServices.getParchesByCity(city, page, limit);
+        let parches = await ParchesServices.getParchesByCity(city, page, limit);
         res.status(200).json(parches);
       }
-      let parches = ParchesServices.getAll(page, limit);
+      let parches = await ParchesServices.getAll(page, limit);
       res.status(200).json(parches);
       console.log(city, page, limit);
     } catch (error) {
       console.log(error);
     }
   },
-  // getParches: async (req, res) => {
-  //   try {
-  //     const {
-  //       params: { city },
-  //     } = req;
-
-  //     if (city) {
-  //       let parches = ParchesServices.getParchesByCity(city);
-  //       res.status(200).json(parches);
-  //       console.log(city);
-  //     }
-  //     let parches = ParchesServices.getAll();
-  //     res.status(200).json(parches);
-  //     console.log(city);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
   getParche: async (req, res) => {
     try {
       const {
@@ -55,18 +35,37 @@ module.exports.ParchesControllers = {
       console.log(error);
     }
   },
-  // getParchesCity: async (req, res) => {
-  //   try {
-  //     const {
-  //       params: { city },
-  //     } = req;
-  //     const parchesByCity = ParchesServices.getParchesByCity(city);
-  //     res.status(200).json(parchesByCity);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // },
-  createParche: async (req, res) => {},
+  createParche: async (req, res) => {
+    try {
+      const { body } = req;
+      const { city, location, description, media } = body;
+
+      const authorization = req.get("authorization");
+      console.log(authorization);
+      let token = "";
+
+      if (authorization && authorization.toLowerCase().startsWith("bearer")) {
+        token = authorization.substring(7);
+      }
+
+      const decodeToken = jwt.verify(token, process.env.JWT);
+
+      if (!token || !decodeToken.id) {
+        return res.status(401).json({
+          error: "token missing or invalid",
+        });
+      }
+
+      const userId = decodeToken.id;
+
+      const parche = { userId, city, location, description, media };
+
+      let parcheCreated = await ParchesServices.createParche(parche);
+      res.status(200).json(parcheCreated);
+    } catch (error) {
+      console.error(error);
+    }
+  },
   updateParche: async (req, res) => {},
   deleteParche: async (req, res) => {},
 };
