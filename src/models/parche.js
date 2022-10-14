@@ -21,7 +21,11 @@ const parcheSchema = new Schema({
     required: true,
   },
   description: String,
-  media: [String],
+  media: [
+    {
+      type: String,
+    },
+  ],
   likes: [
     {
       type: Schema.Types.ObjectId,
