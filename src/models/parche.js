@@ -16,7 +16,7 @@ const parcheSchema = new Schema({
     type: String,
     required: true,
   },
-  location: {
+  place: {
     type: String,
     required: true,
   },

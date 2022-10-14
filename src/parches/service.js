@@ -2,6 +2,8 @@ const parches = require("../mock/parches.json");
 const Parche = require("../models/parche");
 const User = require("../models/user");
 
+const multer = require("multer");
+
 const getAll = async (page, limit) => {
   const pages = [];
   const parches = await Parche.find({}).populate("user", {
@@ -35,7 +37,7 @@ const createParche = async (parche) => {
   const parcheN = new Parche({
     user: user._id,
     city: parche.city,
-    location: parche.location,
+    place: parche.place,
     description: parche.description,
     media: parche.media,
   });

@@ -1,5 +1,6 @@
 const { ParchesServices } = require("./service");
 const jwt = require("jsonwebtoken");
+const uploadFiles = require("../middlewares/multer");
 
 module.exports.ParchesControllers = {
   getParches: async (req, res) => {
@@ -35,10 +36,15 @@ module.exports.ParchesControllers = {
       console.log(error);
     }
   },
+  // uploadMedia: (req, res) => {
+  //   uploadFiles();
+  //   console.log(req.files);
+  //   res.send(req.);
+  // },
   createParche: async (req, res) => {
     try {
       const { body } = req;
-      const { city, location, description, media } = body;
+      const { city, place, description, media } = body;
 
       const authorization = req.get("authorization");
       console.log(authorization);
@@ -46,9 +52,12 @@ module.exports.ParchesControllers = {
 
       if (authorization && authorization.toLowerCase().startsWith("bearer")) {
         token = authorization.substring(7);
+        console.log("token: ", token);
       }
 
       const decodeToken = jwt.verify(token, process.env.JWT);
+
+      console.log(decodeToken);
 
       if (!token || !decodeToken.id) {
         return res.status(401).json({
@@ -58,11 +67,13 @@ module.exports.ParchesControllers = {
 
       const userId = decodeToken.id;
 
-      const parche = { userId, city, location, description, media };
+      const parche = { userId, city, place, description, media };
 
       let parcheCreated = await ParchesServices.createParche(parche);
       res.status(200).json(parcheCreated);
+      console.log(req.files);
     } catch (error) {
+      res.status(200).json({ error: "Error at create parche" });
       console.error(error);
     }
   },
