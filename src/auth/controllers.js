@@ -11,8 +11,9 @@ module.exports.AuthControllers = {
       console.log(userName, password);
       const user = await User.findOne({ userName });
       const passwordCorrect =
-        user === null ? false : bcrypt.compare(password, user.passwordHash);
-      // : await bcrypt.compare(password, user.passwordHash);
+        user === null
+          ? false
+          : await bcrypt.compare(password, user.passwordHash);
 
       if (!(user && passwordCorrect)) {
         res.status(401).json({
@@ -43,6 +44,16 @@ module.exports.AuthControllers = {
     try {
       const { body } = req;
       const { userName, name, email, avatar, password } = body;
+
+      const alreadyExist = await User.findOne({ userName });
+
+      // if (alreadyExist) {
+      //   console.log("already exist");
+      //   res
+      //     .status(409)
+      //     .json({ message: "This user already exist in Parchapp" });
+      // }
+
       const passwordHash = await AuthServices.encrypt(password);
       const user = new User({
         userName,
@@ -55,6 +66,8 @@ module.exports.AuthControllers = {
       const savedUser = await user.save();
 
       res.json(savedUser);
+      console.log(savedUser);
+      console.log(alreadyExist);
     } catch (error) {
       console.error(error);
     }

@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 //creamos un esquema de una nota
-const citySchema = new Schema({
+const categorySchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -9,7 +9,7 @@ const citySchema = new Schema({
 });
 
 //vamos a modificar el objeto toJson que nos devuelve mongo
-citySchema.set("toJSON", {
+categorySchema.set("toJSON", {
   transform: (document, returnedObject) => {
     (returnedObject.id = returnedObject._id),
       delete returnedObject._id,
@@ -18,6 +18,6 @@ citySchema.set("toJSON", {
 });
 
 //este va a ser el objeto del que se instansiaran las demás notas
-const City = model("City", citySchema);
+const Category = model("Category", categorySchema);
 
-module.exports = City;
+module.exports = Category;

@@ -1,8 +1,10 @@
-const parches = require("../mock/parches.json");
+// const parches = require("../mock/parches.json");
 const Parche = require("../models/parche");
 const User = require("../models/user");
+const City = require("../models/city");
+const Category = require("../models/category");
 
-const multer = require("multer");
+// const multer = require("multer");
 
 const getAll = async (page, limit) => {
   const pages = [];
@@ -31,6 +33,15 @@ const getParchesByCity = (city, page, limit) => {
   return pages[page - 1];
 };
 
+const getAllCities = async () => {
+  const cities = await City.find({});
+  return cities;
+};
+const getAllCategories = async () => {
+  const categories = await Category.find({});
+  return categories;
+};
+
 const createParche = async (parche) => {
   const user = await User.findById(parche.userId);
 
@@ -56,6 +67,8 @@ const createParche = async (parche) => {
 module.exports.ParchesServices = {
   getAll,
   getParche,
+  getAllCities,
+  getAllCategories,
   getParchesByCity,
   createParche,
 };

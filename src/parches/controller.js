@@ -1,6 +1,5 @@
 const { ParchesServices } = require("./service");
 const jwt = require("jsonwebtoken");
-const uploadFiles = require("../middlewares/multer");
 
 module.exports.ParchesControllers = {
   getParches: async (req, res) => {
@@ -32,6 +31,22 @@ module.exports.ParchesControllers = {
       const parche = ParchesServices.getParche(id);
       res.status(200).json(parche);
       console.log(id);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getCities: async (req, res) => {
+    try {
+      const cities = await ParchesServices.getAllCities();
+      res.status(200).json(cities);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getCategories: async (req, res) => {
+    try {
+      const cities = await ParchesServices.getAllCategories();
+      res.status(200).json(cities);
     } catch (error) {
       console.log(error);
     }

@@ -9,7 +9,9 @@ module.exports.ParchesAPI = (app) => {
   router
     .get("/", ParchesControllers.getParches)
     // .get("/:city?", ParchesControllers.getParches)
-    .get("/:id", ParchesControllers.getParche)
+    // .get("/:id", ParchesControllers.getParche)
+    .get("/cities", ParchesControllers.getCities)
+    .get("/categories", ParchesControllers.getCategories)
     .post("/", ParchesControllers.createParche)
     .post("/media", uploadFiles(), (req, res) => {
       console.log(req.files);
