@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const { config } = require("../config/config");
 
 const dbConnect = () => {
-  const DB_URI = config.uri_db;
+  const DB_URI =
+    "mongodb+srv://dema369:luiscarluis369@parchapp.wfjow.mongodb.net/?retryWrites=true&w=majority";
   mongoose.connect(
     DB_URI,
     {
