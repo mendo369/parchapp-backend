@@ -4,7 +4,8 @@ const path = require("path");
 function uploadFiles() {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, path.join(__dirname, "../static/public/uploads"));
+      cb(null, `https://${req.headers.host}/uploads/`);
+      // cb(null, path.join(__dirname, "../static/public/uploads"));
     },
     filename: (req, file, cb) => {
       const ext = file.originalname.split(".").pop();
