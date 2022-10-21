@@ -34,8 +34,8 @@ const getParchesByCity = async (city, page, limit) => {
   return pages[page - 1];
 };
 
-const getParchesByUser = async (id) => {
-  const parches = await Parche.find({ user: id }).populate("user", {
+const getParchesByUser = async (userName) => {
+  const parches = await Parche.find({ userName: userName }).populate("user", {
     avatar: 1,
     userName: 1,
   });

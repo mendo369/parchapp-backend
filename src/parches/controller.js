@@ -26,14 +26,14 @@ module.exports.ParchesControllers = {
   getParchesUser: async (req, res) => {
     try {
       const {
-        params: { token },
+        params: { userName },
       } = req;
 
-      const decodeToken = jwt.verify(token, process.env.JWT);
+      // const decodeToken = jwt.verify(token, process.env.JWT);
 
-      const id = decodeToken.id;
+      // const id = decodeToken.id;
 
-      const parchesUser = await ParchesServices.getParchesByUser(id);
+      const parchesUser = await ParchesServices.getParchesByUser(userName);
       res.status(200).json({ parches: parchesUser });
     } catch (error) {
       res.status(500).json({ error: "Error inesperado" });

@@ -10,7 +10,7 @@ module.exports.ParchesAPI = (app) => {
     .get("/", ParchesControllers.getParches)
     // .get("/:city?", ParchesControllers.getParches)
     // .get("/:id", ParchesControllers.getParche)
-    .get("/user/:token", ParchesControllers.getParchesUser)
+    .get("/user/:userName", ParchesControllers.getParchesUser)
     .get("/cities", ParchesControllers.getCities)
     .get("/categories", ParchesControllers.getCategories)
     .post("/", ParchesControllers.createParche)
