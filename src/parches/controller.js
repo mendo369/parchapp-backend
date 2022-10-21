@@ -81,7 +81,7 @@ module.exports.ParchesControllers = {
         console.log("token: ", token);
       }
 
-      const decodeToken = jwt.verify(token, process.env.JWT);
+      const decodeToken = jwt.verify(token, `${process.env.JWT}`);
 
       if (!token || !decodeToken.id) {
         return res.status(401).json({
@@ -106,7 +106,7 @@ module.exports.ParchesControllers = {
       const { body } = req;
       const { id, token } = body;
 
-      const decodeToken = jwt.verify(token, process.env.JWT);
+      const decodeToken = jwt.verify(token, `${process.env.jwt}`);
 
       if (!token || !decodeToken.id) {
         return res.status(401).json({
@@ -128,7 +128,7 @@ module.exports.ParchesControllers = {
       const { body } = req;
       const { id, token } = body;
 
-      const decodeToken = jwt.verify(token, process.env.JWT);
+      const decodeToken = jwt.verify(token, `${process.env.jwt}`);
 
       if (!token || !decodeToken.id) {
         return res.status(401).json({
