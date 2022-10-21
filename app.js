@@ -28,6 +28,7 @@ NotFoundApi(app);
 
 app.listen(config.port, () => {
   console.log("Bienvenido señor stark");
+  console.log(__dirname);
 });
 
 dbConnect();
