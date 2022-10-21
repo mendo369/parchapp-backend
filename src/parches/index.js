@@ -15,14 +15,18 @@ module.exports.ParchesAPI = (app) => {
     .get("/categories", ParchesControllers.getCategories)
     .post("/", ParchesControllers.createParche)
     .post("/media", uploadFiles(), (req, res) => {
-      console.log(req.files);
-      const server = `https://${req.headers.host}}/uploads/`;
-      const filesUploaded = req.files;
-      res.status(200).json({
-        pathFiles: filesUploaded.map((file) => {
-          return server.concat(file.filename);
-        }),
-      });
+      try {
+        console.log(req.files);
+        const server = `https://${req.headers.host}/uploads/`;
+        const filesUploaded = req.files;
+        res.status(200).json({
+          pathFiles: filesUploaded.map((file) => {
+            return server.concat(file.filename);
+          }),
+        });
+      } catch (error) {
+        console.log("Error en multer ", error);
+      }
     })
     .put("/like", ParchesControllers.updateLikesParche)
     .put("/save", ParchesControllers.updateSavedParches)

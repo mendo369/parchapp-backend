@@ -16,7 +16,7 @@ const cors = require("cors");
 app.use(cors());
 
 app.use(express.json()); //le damos la capacidad al servidor de recibir parametros en el request
-app.use(express.static(path.join(__dirname, "/src/static/public/avatars")));
+app.use(express.static(path.join(__dirname, "/src/static/public")));
 
 IndexApi(app);
 AuthAPI(app);
