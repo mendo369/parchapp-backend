@@ -10,6 +10,7 @@ module.exports.ParchesAPI = (app) => {
     .get("/", ParchesControllers.getParches)
     // .get("/:city?", ParchesControllers.getParches)
     // .get("/:id", ParchesControllers.getParche)
+    .get("/user/:token", ParchesControllers.getParchesUser)
     .get("/cities", ParchesControllers.getCities)
     .get("/categories", ParchesControllers.getCategories)
     .post("/", ParchesControllers.createParche)
@@ -22,10 +23,9 @@ module.exports.ParchesAPI = (app) => {
           return server.concat(file.filename);
         }),
       });
-      // res.json({ response: filesUploaded });
     })
-    // .post("/media", ParchesControllers.uploadMedia)
-    .put("/:id", ParchesControllers.updateParche)
+    .put("/like", ParchesControllers.updateLikesParche)
+    .put("/save", ParchesControllers.updateSavedParches)
     .delete("/:id", ParchesControllers.deleteParche);
 
   app.use("/api/parches", router); //concatena las rutas

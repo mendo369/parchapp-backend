@@ -20,6 +20,10 @@ const parcheSchema = new Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
   description: String,
   media: [
     {
@@ -30,6 +34,7 @@ const parcheSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "User",
+      unique: true,
     },
   ],
 });

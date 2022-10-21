@@ -13,7 +13,13 @@ const userSchema = new Schema({
       ref: "Parche",
     },
   ],
-})
+  parchesSaved: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Parche",
+    },
+  ],
+});
 
 //vamos a modificar el objeto toJson que nos devuelve mongo
 userSchema.set("toJSON", {

@@ -35,6 +35,7 @@ module.exports.AuthControllers = {
         userName: user.userName,
         avatar: user.avatar,
         token,
+        id: user.id,
       });
     } catch (error) {
       console.error(error);
@@ -47,12 +48,12 @@ module.exports.AuthControllers = {
 
       const alreadyExist = await User.findOne({ userName });
 
-      // if (alreadyExist) {
-      //   console.log("already exist");
-      //   res
-      //     .status(409)
-      //     .json({ message: "This user already exist in Parchapp" });
-      // }
+      if (alreadyExist) {
+        console.log("already exist");
+        res
+          .status(409)
+          .json({ message: "This user already exist in Parchapp" });
+      }
 
       const passwordHash = await AuthServices.encrypt(password);
       const user = new User({

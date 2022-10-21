@@ -1,4 +1,3 @@
-const cities = require("../mock/cities.json");
 const City = require('../models/city')
 
 const getAllCities = async () => {

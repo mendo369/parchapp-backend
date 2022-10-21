@@ -8,21 +8,22 @@ const Category = require("../models/category");
 
 const getAll = async (page, limit) => {
   const pages = [];
-  const parches = await Parche.find({}).populate("user", {
+  let parches = await Parche.find({}).populate("user", {
     avatar: 1,
     userName: 1,
   });
-  for (let i = 0; i < parches.length; i += limit) {
-    let pedazo = parches.slice(i, i + limit);
+  let parchesList = parches.reverse();
+  for (let i = 0; i < parchesList.length; i += limit) {
+    let pedazo = parchesList.slice(i, i + limit);
     pages.push(pedazo);
   }
   return pages[page - 1];
 };
 
-const getParche = (id) => parches.filter((parche) => parche.id == id);
+const getParche = async (id) => await Parche.findById(id);
 
-const getParchesByCity = (city, page, limit) => {
-  const parchesCity = parches.filter((parche) => parche.city == city);
+const getParchesByCity = async (city, page, limit) => {
+  const parchesCity = await Parche.find({ city: city });
 
   const pages = [];
 
@@ -31,6 +32,14 @@ const getParchesByCity = (city, page, limit) => {
     pages.push(pedazo);
   }
   return pages[page - 1];
+};
+
+const getParchesByUser = async (id) => {
+  const parches = await Parche.find({ user: id }).populate("user", {
+    avatar: 1,
+    userName: 1,
+  });
+  return parches;
 };
 
 const getAllCities = async () => {
@@ -49,6 +58,7 @@ const createParche = async (parche) => {
     user: user._id,
     city: parche.city,
     place: parche.place,
+    category: parche.category,
     description: parche.description,
     media: parche.media,
   });
@@ -64,11 +74,40 @@ const createParche = async (parche) => {
   }
 };
 
+const setLike = async (id, userId) => {
+  const parcheLike = await Parche.findById(id);
+  const liked = await parcheLike.likes.some((like) => like == userId);
+  console.log("liked: ", liked);
+  if (liked) {
+    console.log("ya dió like");
+  } else {
+    parcheLike.likes = parcheLike.likes.concat(userId);
+    await parcheLike.save();
+    console.log("dando like");
+  }
+};
+
+const setSaved = async (id, userId) => {
+  const user = await User.findById(userId);
+  const saved = await user.parchesSaved.some((parche) => parche == id);
+  if (saved) {
+    console.log("ya se había guardado");
+    return;
+  } else {
+    console.log("guardando");
+    user.parchesSaved = user.parchesSaved.concat(id);
+    await user.save();
+  }
+};
+
 module.exports.ParchesServices = {
   getAll,
   getParche,
+  getParchesByUser,
+  getParchesByCity,
   getAllCities,
   getAllCategories,
-  getParchesByCity,
   createParche,
+  setLike,
+  setSaved,
 };
