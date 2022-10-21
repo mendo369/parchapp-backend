@@ -6,6 +6,8 @@ module.exports.IndexApi = (app) => {
     const menu = {
       parches: `https://${req.headers.host}/api/parches`, //saca el host donde está nuestro proyecto
       users: `https://${req.headers.host}/api/users`,
+      auth: `https://${req.headers.host}/api/auth`,
+      media: `https://${req.headers.host}/api/media`,
     };
     res.status(200).json(menu);
   });
