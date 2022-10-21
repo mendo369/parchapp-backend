@@ -28,7 +28,6 @@ NotFoundApi(app);
 
 app.listen(config.port, () => {
   console.log("Bienvenido señor stark");
-  console.log("Bienvenido señor stark: ", `${config.jwt}`);
 });
 
 dbConnect();
