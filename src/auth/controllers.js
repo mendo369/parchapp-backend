@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const { config } = require("../config");
 const { AuthServices } = require("./services");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -27,7 +26,7 @@ module.exports.AuthControllers = {
         userName: user.userName,
       };
 
-      const token = jwt.sign(userForToken, config.jwt, {
+      const token = jwt.sign(userForToken, `${process.env.jwt}`, {
         expiresIn: 60 * 60 * 24 * 30,
       });
 
