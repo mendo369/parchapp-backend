@@ -16,7 +16,7 @@ module.exports.ParchesAPI = (app) => {
     .post("/", ParchesControllers.createParche)
     .post("/media", uploadFiles(), (req, res) => {
       console.log(req.files);
-      const server = `https://${req.headers.host}/uploads/`;
+      const server = `https://${req.headers.host}}/uploads/`;
       const filesUploaded = req.files;
       res.status(200).json({
         pathFiles: filesUploaded.map((file) => {
