@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const { config } = require("./src/config/config");
 
 const dbConnect = () => {
-  const DB_URI = process.env.DB_URI_PRODUCTION;
+  const DB_URI = config.uri_db;
   mongoose.connect(
     DB_URI,
     {
