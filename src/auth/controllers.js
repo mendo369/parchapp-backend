@@ -37,7 +37,6 @@ module.exports.AuthControllers = {
         token,
         id: user.id,
       });
-      res.header("Access-Control-Allow-Origin", "*");
     } catch (error) {
       console.error(error);
     }
@@ -68,9 +67,6 @@ module.exports.AuthControllers = {
       const savedUser = await user.save();
 
       res.json(savedUser);
-      res.header("Access-Control-Allow-Origin", "*");
-      console.log(savedUser);
-      console.log(alreadyExist);
     } catch (error) {
       console.error(error);
     }
