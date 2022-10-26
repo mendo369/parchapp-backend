@@ -58,8 +58,6 @@ const createParche = async (parche) => {
     return urlCloud.secure_url;
   });
 
-  console.log(parcheMedia.map((i) => console.log("hola", i)));
-
   try {
     const parcheN = new Parche({
       user: user._id,
