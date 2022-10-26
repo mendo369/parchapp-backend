@@ -62,6 +62,8 @@ const createParche = async (parche) => {
     return urlCloud.secure_url;
   });
 
+  console.log("mediaUrl: ", mediaUrl);
+
   const parcheN = new Parche({
     user: user._id,
     city: parche.city,
