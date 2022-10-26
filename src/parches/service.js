@@ -3,6 +3,7 @@ const Parche = require("../models/parche");
 const User = require("../models/user");
 const City = require("../models/city");
 const Category = require("../models/category");
+const { uploadFilesCloudinary } = require("../middlewares/cloudinary");
 
 // const multer = require("multer");
 
@@ -54,13 +55,20 @@ const getAllCategories = async () => {
 const createParche = async (parche) => {
   const user = await User.findById(parche.userId);
 
+  let mediaParche = parche.media;
+
+  const mediaUrl = mediaParche.map(url => {
+    const urlCloud = await uploadFilesCloudinary(url)
+    return urlCloud.secure_url
+  })
+
   const parcheN = new Parche({
     user: user._id,
     city: parche.city,
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: parche.media,
+    media: mediaUrl,
   });
 
   try {

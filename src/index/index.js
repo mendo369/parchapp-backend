@@ -17,7 +17,7 @@ module.exports.IndexApi = (app) => {
 module.exports.NotFoundApi = (app) => {
   const router = express.Router();
   router.all("*", (req, res) => {
-    Response.error(res, new createError.NotFound());
+    // Response.error(res, new createError.NotFound());
     res.status(404).json({ error: "Not found" });
   }); //all recibe cualquier verbo en la url
   app.use("/", router);
