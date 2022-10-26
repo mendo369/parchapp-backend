@@ -74,7 +74,6 @@ const createParche = async (parche) => {
     description: parche.description,
     media: mediaArray,
   });
-  console.log(array);
   try {
     const savedParche = await parcheN.save();
     user.parches = user.parches.concat(savedParche._id);
