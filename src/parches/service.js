@@ -57,13 +57,13 @@ const createParche = async (parche) => {
 
   let mediaParche = parche.media;
 
-  const guardarCloud = async (madiaParche) => {
+  const guardarCloud = async () => {
     const mediaArray = [];
     mediaParche.map(async (url) => {
       const urlCloud = await uploadFilesCloudinary(url);
       mediaArray.push(urlCloud);
     });
-    return await mediaArray;
+    return mediaArray;
   };
 
   console.log("guardarCloud: ", guardarCloud);
