@@ -55,29 +55,35 @@ const getAllCategories = async () => {
 const createParche = async (parche) => {
   const user = await User.findById(parche.userId);
 
-  let mediaParche = parche.media;
+  // let mediaParche = parche.media;
 
-  const guardarCloud = async () => {
-    let mediaArray = [];
-    mediaParche.map(async (url) => {
-      const urlCloud = await uploadFilesCloudinary(url);
-      const secureURL = await urlCloud.secure_url;
-      console.log(secureURL);
-      mediaArray.push(secureURL);
-    });
-    return mediaArray;
-  };
+  // const guardarCloud = async () => {
+  //   let mediaArray = [];
+  //   mediaParche.map(async (url) => {
+  //     const urlCloud = await uploadFilesCloudinary(url);
+  //     const secureURL = await urlCloud.secure_url;
+  //     console.log(secureURL);
+  //     mediaArray.push(secureURL);
+  //   });
+  //   return mediaArray;
+  // };
 
-  // console.log("guardarCloud: ", guardarCloud);
+  // // console.log("guardarCloud: ", guardarCloud);
 
-  // const arrayMedia = mediaParche.map(async (url) => {
-  //   const urlCloud = await uploadFilesCloudinary(url);
-  //   return  urlCloud.secure_url;
-  // });
+  // // const arrayMedia = mediaParche.map(async (url) => {
+  // //   const urlCloud = await uploadFilesCloudinary(url);
+  // //   return  urlCloud.secure_url;
+  // // });
 
-  const arrayMedia = await guardarCloud();
-  console.log("MediaParche: ", mediaParche);
-  console.log("ArrayMedia: ", arrayMedia);
+  // const arrayMedia = await guardarCloud();
+  // console.log("MediaParche: ", mediaParche);
+  // console.log("ArrayMedia: ", arrayMedia);
+
+  let arrayMedia = parche.media.map(async (url) => {
+    const urlCloud = await uploadFilesCloudinary(url);
+    console.log(urlCloud.secure_url);
+    return urlCloud.secure_url;
+  });
 
   const parcheN = new Parche({
     user: user._id,
@@ -85,7 +91,7 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: arrayMedia,
+    media: await arrayMedia,
   });
 
   try {
