@@ -73,7 +73,7 @@ const createParche = async (parche) => {
   //   return  urlCloud.secure_url;
   // });
 
-  const arrayMedia = await guardarCloud();
+  const arrayMedia = guardarCloud().then((res) => res);
   console.log("MediaParche: ", mediaParche);
   console.log("ArrayMedia: ", arrayMedia);
 
