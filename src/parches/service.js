@@ -61,9 +61,10 @@ const createParche = async (parche) => {
     let mediaArray = [];
     mediaParche.map(async (url) => {
       const urlCloud = await uploadFilesCloudinary(url);
-      mediaArray.push(urlCloud);
+      console.log(urlCloud.secure_url);
+      mediaArray.push(urlCloud.secure_url);
     });
-    return mediaArray;
+    return await mediaArray;
   };
 
   // console.log("guardarCloud: ", guardarCloud);
