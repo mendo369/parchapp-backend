@@ -91,7 +91,10 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: await arrayMedia,
+    media: parche.media.map(async (url) => {
+      const urlCloud = await uploadFilesCloudinary(url);
+      return urlCloud.secure_url;
+    }),
   });
 
   try {
