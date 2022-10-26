@@ -58,9 +58,12 @@ const createParche = async (parche) => {
   //   return urlCloud;
   // });
 
-  const mediaArray = array.forEach(async (url) => {
-    const urlCloud = await uploadFilesCloudinary(url);
-    return urlCloud.secure_url;
+  const mediaArray = array.map((url) => {
+    uploadFilesCloudinary(url).then((res) => {
+      const { secure_url } = res;
+      console.log(secure_url);
+      return secure_url;
+    });
   });
 
   try {
@@ -72,7 +75,6 @@ const createParche = async (parche) => {
       description: parche.description,
       media: await mediaArray,
     });
-    console.log(await mediaArray);
     const savedParche = await parcheN.save();
     user.parches = user.parches.concat(savedParche._id);
     await user.save();
