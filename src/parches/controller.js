@@ -7,7 +7,6 @@ module.exports.ParchesControllers = {
       const city = req.query.city;
       let page = req.query.page;
       let limit = req.query.limit;
-      console.log(city, page, limit);
 
       if (!page) page = 1;
       if (!limit) limit = 7;
@@ -18,7 +17,6 @@ module.exports.ParchesControllers = {
       }
       let parches = await ParchesServices.getAll(page, limit);
       res.status(200).json(parches);
-      console.log(city, page, limit);
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +44,6 @@ module.exports.ParchesControllers = {
       } = req;
       const parche = ParchesServices.getParche(id);
       res.status(200).json(parche);
-      console.log(id);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +75,6 @@ module.exports.ParchesControllers = {
 
       if (authorization && authorization.toLowerCase().startsWith("bearer")) {
         token = authorization.substring(7);
-        console.log("token: ", token);
       }
 
       const decodeToken = jwt.verify(token, `${process.env.JWT}`);

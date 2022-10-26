@@ -8,7 +8,6 @@ module.exports.AuthControllers = {
     try {
       const { body } = req;
       const { userName, password } = body;
-      console.log(userName, password);
       const user = await User.findOne({ userName });
       const passwordCorrect =
         user === null

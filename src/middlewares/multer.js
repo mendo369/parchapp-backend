@@ -9,9 +9,6 @@ function uploadFiles() {
     filename: (req, file, cb) => {
       const ext = file.originalname.split(".").pop();
       cb(null, `${Date.now()}.${ext}`);
-
-      console.log(file.originalname);
-      console.log("ext", ext);
     },
   });
 

@@ -57,16 +57,21 @@ const createParche = async (parche) => {
 
   let mediaParche = parche.media;
 
-  const guardarCloud = async () => {
-    const mediaArray = [];
-    mediaParche.map(async (url) => {
-      const urlCloud = await uploadFilesCloudinary(url);
-      mediaArray.push(urlCloud);
-    });
-    return mediaArray;
-  };
+  // const guardarCloud = async () => {
+  //   const mediaArray = [];
+  //   mediaParche.map(async (url) => {
+  //     const urlCloud = await uploadFilesCloudinary(url);
+  //     mediaArray.push(urlCloud);
+  //   });
+  //   return mediaArray;
+  // };
 
-  console.log("guardarCloud: ", guardarCloud);
+  // console.log("guardarCloud: ", guardarCloud);
+
+  const arrayMedia = mediaParche.map(async (url) => {
+    const urlCloud = await uploadFilesCloudinary(url);
+    return urlCloud.secure_url;
+  });
 
   const parcheN = new Parche({
     user: user._id,
@@ -74,7 +79,7 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: guardarCloud,
+    media: await arrayMedia,
   });
 
   try {
@@ -91,13 +96,11 @@ const createParche = async (parche) => {
 const setLike = async (id, userId) => {
   const parcheLike = await Parche.findById(id);
   const liked = await parcheLike.likes.some((like) => like == userId);
-  console.log("liked: ", liked);
   if (liked) {
     console.log("ya dió like");
   } else {
     parcheLike.likes = parcheLike.likes.concat(userId);
     await parcheLike.save();
-    console.log("dando like");
   }
 };
 
@@ -108,7 +111,6 @@ const setSaved = async (id, userId) => {
     console.log("ya se había guardado");
     return;
   } else {
-    console.log("guardando");
     user.parchesSaved = user.parchesSaved.concat(id);
     await user.save();
   }
