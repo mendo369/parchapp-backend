@@ -5,8 +5,6 @@ const City = require("../models/city");
 const Category = require("../models/category");
 const uploadFilesCloudinary = require("../middlewares/cloudinary");
 
-// const multer = require("multer");
-
 const getAll = async (page, limit) => {
   const pages = [];
   let parches = await Parche.find({}).populate("user", {
@@ -55,9 +53,7 @@ const getAllCategories = async () => {
 const createParche = async (parche) => {
   const user = await User.findById(parche.userId);
 
-  const parcheMedia = parche.media;
-
-  const arrayMedia = parcheMedia.map(async (url) => {
+  parche.media = parcheMedia.map(async (url) => {
     const urlCloud = await uploadFilesCloudinary(url);
     return urlCloud.secure_url;
   });
@@ -71,7 +67,7 @@ const createParche = async (parche) => {
       place: parche.place,
       category: parche.category,
       description: parche.description,
-      media: await arrayMedia,
+      media: await parche.media,
     });
     const savedParche = await parcheN.save();
     user.parches = user.parches.concat(savedParche._id);
