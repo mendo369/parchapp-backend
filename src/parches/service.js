@@ -53,18 +53,15 @@ const getAllCategories = async () => {
 const createParche = async (parche) => {
   const user = await User.findById(parche.userId);
 
-  const mediaArray = parche.media.map((url) => {
-    const urlCloud = uploadFilesCloudinary(url).then((res) => res.secure_url);
-    return urlCloud;
-  });
+  const array = parche.media;
+  //   const urlCloud = uploadFilesCloudinary(url).then((res) => res.secure_url);
+  //   return urlCloud;
+  // });
 
-  let array = [];
-  for (const url in parche.media) {
-    async () => {
-      const urlCloud = await uploadFilesCloudinary(url);
-      array.push(urlCloud.secure_url);
-    };
-  }
+  const mediaArray = array.forEach(async (url) => {
+    const urlCloud = await uploadFilesCloudinary(url);
+    return urlCloud.secure_url;
+  });
 
   try {
     const parcheN = new Parche({
@@ -73,9 +70,9 @@ const createParche = async (parche) => {
       place: parche.place,
       category: parche.category,
       description: parche.description,
-      media: await array,
+      media: await mediaArray,
     });
-    console.log("array: ", array);
+    console.log(await mediaArray);
     const savedParche = await parcheN.save();
     user.parches = user.parches.concat(savedParche._id);
     await user.save();
