@@ -55,13 +55,16 @@ const createParche = async (parche) => {
 
   const arrayMedia = parche.media;
 
-  let array = [];
+  const iterar = async () => {
+    let array = [];
+    for await (const url of arrayMedia) {
+      const urlCloud = await uploadFilesCloudinary(url);
+      array.push(urlCloud.secure_url);
+    }
+    return await array;
+  };
 
-  arrayMedia.forEach(async (url) => {
-    const urlCloud = await uploadFilesCloudinary(url);
-    console.log(urlCloud.secure_url);
-    array.push(urlCloud.secure_url);
-  });
+  const mediaArray = await iterar();
 
   const parcheN = new Parche({
     user: user._id,
@@ -69,7 +72,7 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: array,
+    media: mediaArray,
   });
   console.log(array);
   try {
