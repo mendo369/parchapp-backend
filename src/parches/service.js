@@ -61,10 +61,10 @@ const createParche = async (parche) => {
     let mediaArray = [];
     mediaParche.map(async (url) => {
       const urlCloud = await uploadFilesCloudinary(url);
-      console.log(urlCloud.secure_url);
+      console.log("secureUrl:", urlCloud.secure_url);
       mediaArray.push(urlCloud.secure_url);
     });
-    return await mediaArray;
+    return mediaArray;
   };
 
   // console.log("guardarCloud: ", guardarCloud);
@@ -74,7 +74,7 @@ const createParche = async (parche) => {
   //   return  urlCloud.secure_url;
   // });
 
-  const arrayMedia = guardarCloud().then((res) => res);
+  const arrayMedia = await guardarCloud();
   console.log("MediaParche: ", mediaParche);
   console.log("ArrayMedia: ", arrayMedia);
 
@@ -84,7 +84,7 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: await arrayMedia,
+    media: arrayMedia,
   });
 
   try {
