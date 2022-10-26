@@ -70,7 +70,7 @@ const createParche = async (parche) => {
 
   const arrayMedia = mediaParche.map(async (url) => {
     const urlCloud = await uploadFilesCloudinary(url);
-    return urlCloud.secure_url;
+    return await urlCloud.secure_url;
   });
 
   const parcheN = new Parche({
