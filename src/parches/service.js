@@ -58,8 +58,12 @@ const createParche = async (parche) => {
   let mediaParche = parche.media;
 
   const mediaUrl = mediaParche.map(async (url) => {
-    const urlCloud = await uploadFilesCloudinary(url);
-    return urlCloud.secure_url;
+    // const urlCloud = await uploadFilesCloudinary(url);
+    // return urlCloud.secure_url;
+    uploadFilesCloudinary(url).then((res) => {
+      const { secure_url } = res;
+      return secure_url;
+    });
   });
 
   console.log("mediaUrl: ", mediaUrl);
