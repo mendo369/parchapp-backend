@@ -74,6 +74,8 @@ const createParche = async (parche) => {
   // });
 
   const arrayMedia = await guardarCloud();
+  console.log("MediaParche: ", mediaParche);
+  console.log("ArrayMedia: ", arrayMedia);
 
   const parcheN = new Parche({
     user: user._id,
@@ -81,7 +83,7 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: arrayMedia,
+    media: await arrayMedia,
   });
 
   try {
