@@ -3,7 +3,7 @@ const Parche = require("../models/parche");
 const User = require("../models/user");
 const City = require("../models/city");
 const Category = require("../models/category");
-const { uploadFilesCloudinary } = require("../middlewares/cloudinary");
+const uploadFilesCloudinary = require("../middlewares/cloudinary");
 
 // const multer = require("multer");
 
