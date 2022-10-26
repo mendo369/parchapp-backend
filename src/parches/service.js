@@ -63,8 +63,7 @@ const createParche = async (parche) => {
     return urlCloud.secure_url;
   });
 
-  console.log(await arrayMedia);
-  console.log("arrayMedia sin await", arrayMedia);
+  console.log("arrayMedia: ", await arrayMedia);
 
   const parcheN = new Parche({
     user: user._id,
@@ -72,7 +71,7 @@ const createParche = async (parche) => {
     place: parche.place,
     category: parche.category,
     description: parche.description,
-    media: arrayMedia,
+    media: await arrayMedia,
   });
 
   try {
