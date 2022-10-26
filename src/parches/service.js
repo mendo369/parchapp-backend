@@ -62,7 +62,7 @@ const createParche = async (parche) => {
     return urlCloud.secure_url;
   });
 
-  console.log("arrayMedia: ", await arrayMedia);
+  console.log(parcheMedia.map((i) => console.log("hola", i)));
 
   try {
     const parcheN = new Parche({
