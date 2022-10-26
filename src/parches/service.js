@@ -53,7 +53,7 @@ const getAllCategories = async () => {
 const createParche = async (parche) => {
   const user = await User.findById(parche.userId);
 
-  parche.media = parcheMedia.map(async (url) => {
+  parche.media = parche.media.map(async (url) => {
     const urlCloud = await uploadFilesCloudinary(url);
     return urlCloud.secure_url;
   });
