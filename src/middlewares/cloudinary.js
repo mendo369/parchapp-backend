@@ -1,4 +1,7 @@
-import { v2 as cloudinary } from "cloudinary";
+// import { v2 as cloudinary } from "cloudinary";
+const { v2 } = require("cloudinary");
+
+const cloudinary = v2;
 
 cloudinary.config({
   cloud_name: "dm3gzvbac",
