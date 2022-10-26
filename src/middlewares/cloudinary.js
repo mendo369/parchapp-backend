@@ -9,8 +9,10 @@ cloudinary.config({
   api_secret: "AVJ0Imzm-K6QverX7tiTcTS6gTk",
 });
 
-export async function uploadFilesCloudinary(pathFile) {
+async function uploadFilesCloudinary(pathFile) {
   return await cloudinary.uploader.upload(pathFile, {
     folder: "parchapp",
   });
 }
+
+module.exports = uploadFilesCloudinary;
